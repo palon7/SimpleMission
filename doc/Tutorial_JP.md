@@ -21,37 +21,37 @@ local pack_name = "mypack"
 ```
 ```lua
 local mm_missions = {
-    rescue_fire = {
-        title = "Rescue scientist",
-        location = "rescue_lab",
+	rescue_fire = {
+		title = "Rescue scientist",
+		location = "rescue_lab",
 		base_reward = 5000,
 		base_research = 10, 
 		probability = 0.5,
-        tasks = {
-            {
-                step = 0,
-                type = "goto_zone",
+		tasks = {
+			{
+				step = 0,
+				type = "goto_zone",
 				zone = "zone_lab",
 				zone_size = 150,
-                name = "Respond to emergency call",
-                desc = "Investigate emergency call from lab.",
+				name = "Respond to emergency call",
+				desc = "Investigate emergency call from lab.",
 				timelimit = 60*60*60
-            },
-            {
-                step = 1,
-                type = "extinguish",
-                name = "Extinguish fire",
+			},
+			{
+				step = 1,
+				type = "extinguish",
+				name = "Extinguish fire",
 				desc = "Extinguish the fires.",
 				timelimit = 60*60*60
-             },
-             {
-                step = 1,
-                type = "rescue",
-                name = "Rescue 3 survivor",
+			 },
+			 {
+				step = 1,
+				type = "rescue",
+				name = "Rescue 3 survivor",
 				desc = "Deliver survivor to hospital.",
 				timelimit = 60*60*45,
-             }
-        }
+			 }
+		}
 	}
 }
 
@@ -61,40 +61,40 @@ local mm_missions = {
 
 ```lua
 local mm_missions = {
-    rescue_fire = {
-        title = "Rescue scientist", -- ミッション名
-        location = "rescue_lab",    -- Step3で指定したLocation
+	rescue_fire = {
+		title = "Rescue scientist", -- ミッション名
+		location = "rescue_lab",    -- Step3で指定したLocation
 		base_reward = 5000, --報酬
 		base_research = 10, 
 		probability = 0.5,  -- 発生確率
-        tasks = {
-            {
-                -- 指定したゾーン(zone_lab)に移動する。
-                step = 0, -- 最初のステップ
-                type = "goto_zone",   -- 「ゾーンに移動する」というタスク
+		tasks = {
+			{
+				-- 指定したゾーン(zone_lab)に移動する。
+				step = 0, -- 最初のステップ
+				type = "goto_zone",   -- 「ゾーンに移動する」というタスク
 				zone = "zone_lab", -- Step5で指定したゾーン名
 				zone_size = 150,      -- ゾーン半径
-                name = "Respond to emergency call", -- タイトル
-                desc = "Investigate emergency call from lab.", -- 説明
+				name = "Respond to emergency call", -- タイトル
+				desc = "Investigate emergency call from lab.", -- 説明
 				timelimit = 60*60*60 -- 制限時間(tick) 60*60*60=1時間
-            },
-            {
-                -- 火災を消火する。デフォルトではlocation内すべてのfireが対象
-                step = 1, -- 2つめのステップ。前のステップが終わるまでは表示されない
-                type = "extinguish",
-                name = "Extinguish fire",
+			},
+			{
+				-- 火災を消火する。デフォルトではlocation内すべてのfireが対象
+				step = 1, -- 2つめのステップ。前のステップが終わるまでは表示されない
+				type = "extinguish",
+				name = "Extinguish fire",
 				desc = "Extinguish the fires.",
 				timelimit = 60*60*60
-             },
-             {
-                -- 生存者を救助する。デフォルトではlocation内すべてのcharacterが対象
-                step = 1, -- 同じstepが複数ある場合、同時に表示される
-                type = "rescue",
-                name = "Rescue 3 survivor",
+			 },
+			 {
+				-- 生存者を救助する。デフォルトではlocation内すべてのcharacterが対象
+				step = 1, -- 同じstepが複数ある場合、同時に表示される
+				type = "rescue",
+				name = "Rescue 3 survivor",
 				desc = "Deliver survivor to hospital.",
 				timelimit = 60*60*45,
-             }
-        }
+			 }
+		}
 	}
 }
 ```
@@ -128,23 +128,23 @@ local pack_name = "mypack"
 ```
 ```lua
 local mm_missions = {
-    deliver_object = {
-        title = "Deliver equipment to lighthouse",
-        location = "deliver_lighthouse",
+	deliver_object = {
+		title = "Deliver equipment to lighthouse",
+		location = "deliver_lighthouse",
 		base_reward = 5000,
 		base_research = 10, 
 		probability = 0.5,
-        tasks = {
-            {
-                step = 0,
-                type = "deliver_object",
-                name = "Deliver equipment",
-                desc = "Deliver equipment to lighthouse.",
+		tasks = {
+			{
+				step = 0,
+				type = "deliver_object",
+				name = "Deliver equipment",
+				desc = "Deliver equipment to lighthouse.",
 				delivery_name = "target",
 				delivery_zone = "lighthouse_cargo",
 				timelimit = 60*60*60,
-            }
-        },
+			}
+		},
 	}
 }
 
@@ -154,24 +154,24 @@ local mm_missions = {
 
 ```lua
 local mm_missions = {
-    deliver_object = {
-        title = "Deliver equipment to lighthouse", -- ミッション名
-        location = "deliver_lighthouse", -- Step3で指定したLocation
+	deliver_object = {
+		title = "Deliver equipment to lighthouse", -- ミッション名
+		location = "deliver_lighthouse", -- Step3で指定したLocation
 		base_reward = 5000, --報酬(現金)
 		base_research = 10, --報酬(リサーチポイント)
 		probability = 0.5,-- 発生確率
-        tasks = {
-            {
-                -- 指定したCargo zone(zone_lab)に配達する。
-                step = 0,-- 最初のステップ
-                type = "deliver_object",-- 「ゾーンに移動する」というタスク
-                name = "Deliver equipment", -- タイトル
-                desc = "Deliver equipment to lighthouse.",-- 説明
+		tasks = {
+			{
+				-- 指定したCargo zone(zone_lab)に配達する。
+				step = 0,-- 最初のステップ
+				type = "deliver_object",-- 「ゾーンに移動する」というタスク
+				name = "Deliver equipment", -- タイトル
+				desc = "Deliver equipment to lighthouse.",-- 説明
 				delivery_name = "target", -- Step5で指定した配送対象のMarker text
 				delivery_zone = "lighthouse_cargo",  -- Step7で指定した配送先のCargo zoneのTypes
 				timelimit = 60*60*60, -- 制限時間(tick) 60*60*60=1時間
-            }
-        },
+			}
+		},
 	}
 }
 ```
