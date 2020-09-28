@@ -22,7 +22,7 @@ It is intended to create missions with a simple settings, without writing lua.
 5. Change `debug` to `false`, change `pack_name`
 6. Release your pack!
 
-See also: [Tutorial](/doc/Reference_JP.md)(Not translated yet)
+See also: [Tutorial](/doc/Tutorial_JP.md)(Not translated yet)
 
 ## Testing 
 
@@ -56,7 +56,7 @@ Stormworks用のカスタムミッションスクリプトです。
 5. `debug`を`false`に設定し、`pack_name`を変更する
 6. リリースする
 
-詳しくは[チュートリアル](/doc/Reference_JP.md)をご覧ください。
+詳しくは[チュートリアル](/doc/Tutorial_JP.md)をご覧ください。
 
 ## テスト
 
