@@ -821,10 +821,10 @@ function getZone(name)
 		end
 	end
 
-	log("zone count:" .. #zones)
+	logd("zone count:" .. #zones)
 	if zones ~= nil and #zones > 0 then
 		if #zones > 1 then
-			log("Warning: multiple zone found")
+			logd("Warning: multiple zone found")
 		end
 		--printTable(zones, "zones")
 
@@ -875,7 +875,7 @@ end
 function findActiveMission(name)
 	for k, v in pairs(g_savedata.m_missions) do
       if v.name == name then
-		log(v.name .. "__" .. name)
+		logd(v.name .. "__" .. name)
         return true
       end
     end
@@ -918,9 +918,10 @@ end
 
 function log(text)
 	server.announce("[MM]", text)
-  end
-  function logd(text)
-	  if debug then
-		  server.announce("[MM-d]", text)
-	  end
-  end
+end
+
+function logd(text)
+	if debug then
+		server.announce("[MM-d]", text)
+	end
+end
