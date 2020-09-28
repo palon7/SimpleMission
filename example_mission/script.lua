@@ -14,6 +14,97 @@ local min_mission_interval = 30 -- Interval of random mission spawning
 local max_mission_interval = 120
 -- Mission Defination
 local mm_missions = {
+	deliver_object = {
+        title = "Deliver object demo",
+        location = "deliver_object",   -- name of location
+		base_reward = 5000,       -- reward of rescue
+		base_research = 10,
+		probability = 0.5,
+        tasks = {
+            {
+                step = 0, -- task step
+                type = "deliver_object", -- type of task
+                name = "Deliver object",
+                desc = "Deliver box to hanger.",
+				delivery_name = "target",
+				delivery_zone = "cb_cz",
+				timelimit = 60*60*15,
+            }
+        },
+		no_spawn = true
+    },
+	deliver_vehicle = {
+        title = "Deliver vehicle demo",
+        location = "deliver_vehicle",   -- name of location
+		base_reward = 5000,       -- reward of rescue
+		base_research = 10,
+		probability = 0.5,
+        tasks = {
+            {
+                step = 0, -- task step
+                type = "deliver_vehicle", -- type of task
+                name = "Deliver vehicle",
+                desc = "Deliver case to hanger.",
+				delivery_name = "target",
+				delivery_zone = "cb_cz",
+				timelimit = 60*60*15,
+            }
+        },
+		no_spawn = true
+    },
+	deliver_survivor = {
+        title = "Deliver survivor demo",
+        location = "deliver_survivor",   -- name of location
+		base_reward = 5000,       -- reward of rescue
+		base_research = 10,
+		probability = 0.5,
+        tasks = {
+            {
+                step = 0, -- task step
+                type = "deliver_survivor", -- type of task
+                name = "Deliver survivor",
+                desc = "Deliver survivor to hanger.",
+				tag = "target",
+				delivery_zone = "cb_cz",
+				timelimit = 60*60*15
+            }
+        },
+		no_spawn = true
+    },
+    rescue_fire = {
+        title = "Rescue&Fire Demo",
+        location = "rescue_fire",   -- name of location
+		base_reward = 5000,       -- reward of rescue
+		base_research = 10,
+		probability = 0.5,
+        tasks = {
+            {
+                step = 0, -- task step
+                type = "goto_zone", -- type of task
+				zone = "zone_target", -- tag of target zone
+				zone_size = 15, -- zone size
+                name = "Respond to emergency call",
+                desc = "Walk to survivor.",
+				timelimit = 60*60*15
+            },
+            {
+                step = 1,
+                type = "extinguish",
+                name = "Extinguish fire",
+				desc = "Extinguish the fires.",
+				-- timelimit = 60*60,
+				timelimit = 60*60*60
+             },
+             {
+                step = 1,
+                type = "rescue",
+                name = "Rescue 2 survivor",
+				desc = "Deliver survivor to hospital.",
+				timelimit = 60*60*60,
+             }
+        },
+		no_spawn = true
+	},
 }
 
 -- Variables

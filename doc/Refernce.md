@@ -43,20 +43,22 @@ local mm_missions = {
     fire_research = { -- Mission ID
         ...
         tasks = {
-            step = 0, 
-            type = "goto_zone",
-            ...
-        },,
-        tasks = {
-            step = 1, 
-            type = "rescue",
-            ...
-        },
-        tasks = {
-            step = 1, 
-            type = "extinguish",
-            ...
-        },
+            {
+                step = 0, 
+                type = "goto_zone",
+                ...
+            },
+            {
+                step = 1, 
+                type = "rescue",
+                ...
+            },
+            {
+                step = 1, 
+                type = "extinguish",
+                ...
+            },
+        }
     }
 }
 ```
@@ -81,7 +83,7 @@ If you set the same `step` to multiple tasks, these tasks will appear at the sam
 ### Task types
 The task parameter `type` define type of tasks. The additional parameters that can be specified vary depending on the type.
 
-Currently available value: `goto_zone`, `rescue`, ` `
+Currently available value: `goto_zone`, `rescue`, `deliver_vehicle`, `deliver_survivor`, `deliver_object`
 
 #### goto_zone
 
@@ -103,7 +105,7 @@ You must rescue everyone placed in location by default. It does not matter where
 |`tag`||Tag name to filter. If specified, only survivors with matching tags will be rescued.|
 |`reward_per_survivor`||Cash reward for completing a mission.|
 |`research_per_survivor`||Research point reward for completing a mission.|
-|`rescue_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
+|`rescue_name`||Name to filter. If specified, only survivor with matching "marker text" will be rescued.|
 
 #### extinguish
 
@@ -114,7 +116,7 @@ You must extinguish all fire placed in location, and all burning vehicle that ar
 |Parameter|Required|Description|
 |-----------|----|----|
 |`tag`||Tag name to filter. If specified, only fire with matching tags will be rescued|
-|`ignore_vehicle`||If true, do not target burning vehicles|
+|`ignore_vehicle`||If true, don't check burning vehicles|
 
 #### deliver_vehicle
 
@@ -136,6 +138,15 @@ Deliver survivor to zone.
 |`reward_per_survivor`||Cash reward for completing a mission.|
 |`research_per_survivor`||Research point reward for completing a mission.|
 
+#### deliver_object
+
+Deliver object to zone.
+
+|Parameter|Required|Description|
+|-----------|----|----|
+|`delivery_zone`|o|Target cargo zone name.|
+|`delivery_name`||Name to filter. If specified, only object with matching "marker text" will be rescued.|
+
 ## Command
 
 |command|description|
@@ -146,3 +157,16 @@ Deliver survivor to zone.
 |`?missions <pack_name>`|List currently active missions.<br>`<pack_name>`: Configured pack name.|
 |`?location <pack_name>`|List all location in pack
 .<br>`<pack_name>`: Configured pack name.|
+
+### About probability
+Missions are randomly generated within a set occurrence interval.
+The missions are randomly selected by the following algorithm.
+
+
+1. list the missions that are not currently in progress and add all `probability`
+2. generate a random number whose maximum value is the sum of `probability`.
+3. select a mission that is within that random number range.
+
+So, for example, if there is only one mission with a `probability` of 0.01, that mission will be selected.
+
+Also, if the mission's `probability` is all 0.01, it is selected with equal probability. Note that `probability` is only a relative probability.
