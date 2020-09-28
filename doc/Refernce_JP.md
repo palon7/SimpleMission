@@ -1,15 +1,10 @@
-# SimpleMission
-
-## 概要
-
-Stormworks向けのカスタムミッション管理スクリプトです。
-
-シンプルな記述でミッションを作成することを目的としています。
+# SimpleMission リファレンス
 
 ## Mission
 
 `local mm_missions`内にミッションの定義を記載します。\
-`ミッションID = {}`の書式で一つのミッションを定義し、`{}`の中に内容を記載します。それぞれのミッションの間には`,`が必要です。
+`ミッションID = {}`の書式で一つのミッションを定義し、`{}`の中に内容を記載します。それぞれのミッションの間には`,`が必要です。\
+ミッションIDには半角英数・アンダーバーが使用できます。
 
 例:
 
@@ -96,15 +91,16 @@ local mm_missions = {
 
 #### rescue
 
-生存者を救助して病院に運ぶタスクです。\
-デフォルトではlocationに配置された全員を救助する必要があります。病院の場所は問いません。（`hospital`として指定されているDelivery zoneへの移送が対象）
+生存者(character)を救助して病院に運ぶタスクです。\
+デフォルトではlocationに配置された全員を救助する必要があります。病院の場所は問いません。（`hospital`として指定されているDelivery zoneへの移送が対象）\
+負傷した生存者は、10秒毎にHPを1失います。
 
 |パラメータ名|必須|説明|
 |-----------|----|----|
-|`tag`||フィルターするtag。指定している場合はtagが一致する生存者のみ救助対象になります|
-|`reward_per_survivor`||Cash reward for completing a mission.|
-|`research_per_survivor`||Research point reward for completing a mission.|
-|`rescue_name`||Name to filter. If specified, only survivor with matching "marker text" will be rescued.|
+|`reward_per_survivor`||一人救助毎の報酬（現金）|
+|`research_per_survivor`||一人救助毎の報酬（リサーチポイント）|
+|`rescue_name`||指定されている場合、"Marker text"が一致するcharacterのみが救出の対象になります|
+|`no_bleed`||trueに指定されている場合、生存者が負傷していても時間経過でHPを失いません|
 
 #### extinguish
 
@@ -113,46 +109,46 @@ local mm_missions = {
 
 |パラメータ名|必須|説明|
 |-----------|----|----|
-|`tag`||フィルターするtag。指定している場合はtagが一致するFireのみ消火対象になります|
+|`tag`||指定されている場合、"tag"が一致するキャラクターのみが救出の対象になります|
 |`ignore_vehicle`||trueが指定されている場合は燃えているvehicleを対象にしません|
 
 #### deliver_vehicle
 
-Vehicleを指定されたゾーンまで移動させるタスクです。
+Vehicleを指定されたゾーンまで配達させるタスクです。
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_zone`|o|Target cargo zone name. tag|
-|`delivery_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
+|`delivery_zone`|o|配達先のCargo zoneのTypes。**Cargo zoneのMarker textが空だと正しく動作しません**|
+|`delivery_name`||指定されている場合、"Marker text"が一致するvehicleのみが配達の対象になります.|
 
 #### deliver_survivor
 
-Deliver survivor to zone.
+Characterを指定されたゾーンまで配達させるタスクです。
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
-|`delivery_zone`||Name of target delivery zone. <br>You need to create "delivery zone" in enviroment mod by mission editor, and enter name to "tag".|
-|`reward_per_survivor`||Cash reward for completing a mission.|
-|`research_per_survivor`||Research point reward for completing a mission.|
+|`delivery_zone`|o|配達先のCargo zoneのTypes。**Cargo zoneのMarker textが空だと正しく動作しません**|
+|`delivery_name`||指定されている場合、"Marker text"が一致するcharacterのみが配達の対象になります.|
+|`reward_per_survivor`||一人毎の報酬（現金）|
+|`research_per_survivor`||一人毎の報酬（リサーチポイント）|
 
 #### deliver_object
 
-Deliver object to zone.
+Object(木箱など)を指定されたゾーンまで配達させるタスクです。
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_zone`|o|Target cargo zone name.|
-|`delivery_name`||Name to filter. If specified, only object with matching "marker text" will be rescued.|
+|`delivery_zone`|o|配達先のCargo zoneのTypes。**Cargo zoneのMarker textが空だと正しく動作しません**|
+|`delivery_name`||指定されている場合、"Marker text"が一致するobjectのみが配達の対象になります.|
 
-## Command
+## コマンド
 
 |command|description|
 |-|-|-|
-|`?spawn <pack_name> <mission_name>`|Spawn mission immediately.<br>`<pack_name>`: Configured pack name.<br>`<mission_name>`: Indentifer of mission to spawn.|
-|`?spawn_random <pack_name>`|Spawn random mission immediately.<br>`<pack_name>`: Configured pack name.|
-|`?del_mission <pack_name> <mission_name>`|Delete mission immediately.<br>`<pack_name>`: Configured pack name.<br>`<mission_name>`: Indentifer of mission to delete.|
-|`?missions <pack_name>`|List currently active missions.<br>`<pack_name>`: Configured pack name.|
+|`?spawn <pack_name> <mission_name>`|ミッションをすぐにスポーンさせます。<br>`<pack_name>`: パック名<br>`<mission_name>`: スポーンさせるミッションID|
+|`?spawn_random <pack_name>`|ランダムなミッションをすぐにスポーンさせます。<br>`<pack_name>`: パック名|
+|`?del_mission <pack_name> <mission_name>`|ミッションをすぐに削除します。<br>`<pack_name>`: パック名<br>`<mission_name>`: スポーンさせるミッションID|
+|`?missions <pack_name>`|現在有効なミッション一覧を表示します。<br>`<pack_name>`: パック名|
 |`?location <pack_name>`|List all location in pack
 .<br>`<pack_name>`: Configured pack name.|
 
@@ -169,5 +165,5 @@ Deliver object to zone.
 
 ### その他の注意事項
 * Luaスクリプトの変更はセーブデータの再読込で反映されますが、ミッションエディタでの変更は`?reload_scripts`コマンドを使用するかセーブデータを作り直さないと反映されません。
-* Enviroment modの変更はセーブデータを作り直さないと反映されません。
-* delivery_zoneに指定するCargo zoneにはMarker textがないと認識されません。
+* Enviroment modの変更はおそらくセーブデータを作り直さないと反映されません。
+* `delivery_zone`に指定するCargo zoneにはMarker textがないと認識されません。

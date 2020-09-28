@@ -1,9 +1,4 @@
-SimpleMission Reference
-==================
-
-## About
-A custom mission script for Stormworks.
-It is intended to create missions with a simple settings, without writing lua.
+# SimpleMission Reference
 
 ## Mission
 
@@ -98,14 +93,15 @@ Move to the specified zone.
 
 Rescue the survivors and transport them to the hospital.
 
-You must rescue everyone placed in location by default. It does not matter where the hospital is located, it must be transferred to a delivery zone tagged as `hospital`.
+You must rescue everyone placed in location by default. It does not matter where the hospital is located, it must be transferred to a delivery zone tagged as `hospital`.\
+Injured survivors lose 1 hp every 10 seconds.
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`tag`||Tag name to filter. If specified, only survivors with matching tags will be rescued.|
-|`reward_per_survivor`||Cash reward for completing a mission.|
-|`research_per_survivor`||Research point reward for completing a mission.|
-|`rescue_name`||Name to filter. If specified, only survivor with matching "marker text" will be rescued.|
+|`reward_per_survivor`||Cash reward per survivor.|
+|`research_per_survivor`||Research point reward per survivor.|
+|`rescue_name`||If specified, only survivor with matching "marker text" will be rescued.|
+|`no_bleed`||If true, survivors will not lose HP over time, even if they are injured. |
 
 #### extinguish
 
@@ -124,7 +120,7 @@ Deliver vehicle to zone.
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_zone`|o|Target cargo zone name.|
+|`delivery_zone`|o|Target cargo zone name. **If the Marker text in the Cargo zone is empty, it will not work properly**|
 |`delivery_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
 
 #### deliver_survivor
@@ -133,8 +129,8 @@ Deliver survivor to zone.
 
 |Parameter|Required|Description|
 |-----------|----|----|
+|`delivery_zone`|o|Target cargo zone name. **If the Marker text in the Cargo zone is empty, it will not work properly**|
 |`delivery_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
-|`delivery_zone`||Name of target delivery zone. <br>You need to create "delivery zone" in enviroment mod by mission editor, and enter name to "tag".|
 |`reward_per_survivor`||Cash reward for completing a mission.|
 |`research_per_survivor`||Research point reward for completing a mission.|
 
@@ -144,7 +140,7 @@ Deliver object to zone.
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_zone`|o|Target cargo zone name.|
+|`delivery_zone`|o|Target cargo zone name. **If the Marker text in the Cargo zone is empty, it will not work properly**|
 |`delivery_name`||Name to filter. If specified, only object with matching "marker text" will be rescued.|
 
 ## Command
@@ -155,8 +151,7 @@ Deliver object to zone.
 |`?spawn_random <pack_name>`|Spawn random mission immediately.<br>`<pack_name>`: Configured pack name.|
 |`?del_mission <pack_name> <mission_name>`|Delete mission immediately.<br>`<pack_name>`: Configured pack name.<br>`<mission_name>`: Indentifer of mission to delete.|
 |`?missions <pack_name>`|List currently active missions.<br>`<pack_name>`: Configured pack name.|
-|`?location <pack_name>`|List all location in pack
-.<br>`<pack_name>`: Configured pack name.|
+|`?location <pack_name>`|List all location in pack.<br>`<pack_name>`: Configured pack name.|
 
 ### About probability
 Missions are randomly generated within a set occurrence interval.
@@ -170,3 +165,8 @@ The missions are randomly selected by the following algorithm.
 So, for example, if there is only one mission with a `probability` of 0.01, that mission will be selected.
 
 Also, if the mission's `probability` is all 0.01, it is selected with equal probability. Note that `probability` is only a relative probability.
+
+### Notes
+* Changes in Lua scripts are reflected by reloading the savegame, but you need to use the `?reload_scripts` command or recreate the saved data to reflect changes made in the mission editor.
+* The changes in the Enviroment mod probably won't be reflected unless you recreate the savegame.
+* The Cargo zone specified in the `delivery_zone` must have a "Marker text" to be recognized.
