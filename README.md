@@ -12,7 +12,10 @@ It is intended to create missions with a simple settings, without writing lua.
 5. Change `debug` to `false`, change `pack_name`
 6. Release your pack!
 
+See also: [Tutorial](/doc/Reference_JP.md)(Not translated yet)
+
 ## Testing 
+
 Copy `example_missions` folder to `<stormworks install path>/data/missions/`
 
 ## License
@@ -24,7 +27,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Stormworks用のカスタムミッションスクリプトです。
 
-## Getting Started
+## クイックスタート
 
 1. Code -> Download as zipをクリックするか、`git clone https://github.com/palon7/simplemission.git`でダウンロードする
 2. script.luaの内容をミッションプレイリストのLuaにコピーする
@@ -33,7 +36,11 @@ Stormworks用のカスタムミッションスクリプトです。
 5. `debug`を`false`に設定し、`pack_name`を変更する
 6. リリースする
 
-## Testing
+詳しくは[チュートリアル](/doc/Reference_JP.md)をご覧ください。
+
+## テスト
+
+スクリプトのテスト用にミッションをいくつか用意しています。
 `example_missions`フォルダを`<stormworks install path>/data/missions/`にコピーしてください。
 
 ## License

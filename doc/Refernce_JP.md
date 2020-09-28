@@ -122,7 +122,7 @@ Vehicleを指定されたゾーンまで移動させるタスクです。
 
 |Parameter|Required|Description|
 |-----------|----|----|
-|`delivery_zone`|o|Target cargo zone name.|
+|`delivery_zone`|o|Target cargo zone name. tag|
 |`delivery_name`||Name to filter. If specified, only vehicle with matching "marker text" will be rescued.|
 
 #### deliver_survivor
@@ -166,3 +166,8 @@ Deliver object to zone.
 
 そのため、たとえば`probability`が0.01でも対象のミッションが一つしかない場合はそのミッションが選択されます。\
 また、ミッションの`probability`がすべて0.01の場合は等しい確率で選択されます。あくまで`probability`は相対的な確率に過ぎないことに留意してください。
+
+### その他の注意事項
+* Luaスクリプトの変更はセーブデータの再読込で反映されますが、ミッションエディタでの変更は`?reload_scripts`コマンドを使用するかセーブデータを作り直さないと反映されません。
+* Enviroment modの変更はセーブデータを作り直さないと反映されません。
+* delivery_zoneに指定するCargo zoneにはMarker textがないと認識されません。
