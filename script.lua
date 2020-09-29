@@ -170,6 +170,9 @@ local task_type = {
 			-- add marker target
 			local zones = server.getZones(task.delivery_zone)
 			local first_zone = firstZone(zones)
+			if first_zone == nil then
+				log("Error: no delivery zone found. Task:" .. task.name)
+			end
 
 			local zone_x, zone_y, zone_z = matrix.position(first_zone.transform)
 			addMarker(mission, task.id, createMarker(zone_x, zone_z, task.name, "Delivery to here", 0), task.timeleft)
@@ -257,6 +260,9 @@ local task_type = {
 			-- add marker target
 			local zones = server.getZones(task.delivery_zone)
 			local first_zone = firstZone(zones)
+			if first_zone == nil then
+				log("Error: no delivery zone found. Task:" .. task.name)
+			end
 
 			local zone_x, zone_y, zone_z = matrix.position(first_zone.transform)
 			addMarker(mission, task.id, createMarker(zone_x, zone_z, task.name, "Delivery to here", 0), task.timeleft)
@@ -723,6 +729,9 @@ function calcLeftTime(time)
 end
 
 function firstZone(zones)
+	if zones == nil then
+		return nil
+	end
 	for k, v in pairs(zones) do
 		return v
 	end
