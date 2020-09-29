@@ -78,7 +78,7 @@ local mm_missions = {
 たとえば、 `step=0`に指定地点へ移動、 `step=1`に消火・救助のタスクを指定すると、まず指定地点へ移動してから初めて消火・救助のタスクが現れるようにすることができます。
 
 パラメータ `type` では、タスクの種類が指定できます。typeによって指定できるパラメータが異なります。\
-現在使用できるtypeは `goto_zone`, `rescue`, `deliver_vehicle`, `deliver_survivor`, `deliver_object`です。
+現在使用できるtypeは `goto_zone`, `rescue`, `extinguish`, `deliver_vehicle`, `deliver_survivor`, `deliver_object`です。
 
 #### goto_zone
 

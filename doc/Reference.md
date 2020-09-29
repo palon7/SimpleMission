@@ -78,7 +78,7 @@ If you set the same `step` to multiple tasks, these tasks will appear at the sam
 ### Task types
 The task parameter `type` define type of tasks. The additional parameters that can be specified vary depending on the type.
 
-Currently available value: `goto_zone`, `rescue`, `deliver_vehicle`, `deliver_survivor`, `deliver_object`
+Currently available value: `goto_zone`, `rescue`, `extinguish`, `deliver_vehicle`, `deliver_survivor`, `deliver_object`
 
 #### goto_zone
 
