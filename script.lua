@@ -793,7 +793,7 @@ function getMissionObjects(location, type, tag)
 
 	-- Scan 
 	for i=0, location_data.object_count-1 do
-		o = server.getLocationObjectData(playIist_index, location_index, i)
+		o = server.getLocationObjectData(playlist_index, location_index, i)
 		-- filter by type
 		if o.type == type or type == nil then
 			if tag ~= nil then
