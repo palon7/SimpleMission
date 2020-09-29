@@ -164,7 +164,7 @@ local mm_missions = {
 			{
 				-- 指定したCargo zone(zone_lab)に配達する。
 				step = 0,-- 最初のステップ
-				type = "deliver_object",-- 「ゾーンに移動する」というタスク
+				type = "deliver_object",-- 「Objectを配達する」というタスク
 				name = "Deliver equipment", -- タイトル
 				desc = "Deliver equipment to lighthouse.",-- 説明
 				delivery_name = "target", -- Step5で指定した配送対象のMarker text
