@@ -401,7 +401,6 @@ function onPlayerJoin(steam_id, name, peer_id, admin, auth)
 end
 
 function onSpawnMissionObject(id, name, type, playlist_index)
-	--logd(id..":"..type..","..name.." #"..playlist_index)
 	-- Capture spawned object here, because there is no other way to get "global" object id
 	if spawn_mission_id ~= nil then
 		o = {
@@ -472,7 +471,6 @@ function spawnRandomMission()
 		if (not data.no_spawn) and (not findActiveMission(name)) then
 			mission_count = mission_count + 1
 			mission_prob_count = mission_prob_count + (data.probability or 1.0)
-			logd("misision-".. name)
 		end
 	end
 
@@ -484,7 +482,6 @@ function spawnRandomMission()
 		for name,data in pairs(mm_missions) do
 			if (not data.no_spawn) and (not findActiveMission(name)) then
 				prob = data.probability or 1.0
-				logd(prob.." "..random_value)
 				if random_value > prob then
 					random_value = random_value - prob
 				else
@@ -884,7 +881,6 @@ end
 function findActiveMission(name)
 	for k, v in pairs(g_savedata.m_missions) do
       if v.name == name then
-		logd(v.name .. "__" .. name)
         return true
       end
     end
